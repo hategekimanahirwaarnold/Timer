@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 let sound = document.getElementById("beep");
-
+let coulor = "rgb(223, 223, 223)";
 const Timer = () => {
     const [brek, setBrek] = useState(5);
     const [session, setSession] = useState(25);
@@ -8,6 +8,7 @@ const Timer = () => {
     const [timeSec, setSec] = useState(0);
     const [timeMin, setMin] = useState(session);
     const [play, setPlay] = useState(false);
+    const [Color, setColor] = useState(coulor);
 
     const handleRefresh = () => {
         console.log("refresh is called");
@@ -37,18 +38,30 @@ const Timer = () => {
                         sound.pause();
                         sound.currentTime = 0;
                     };
+                    if (timeMin === 0) {
+                        setColor("red")
+                    } else {
+                        setColor(coulor)
+                    }
                 } else {
                     if (timeMin === 0 && inSess) {
                         setMin(brek);
                         setInse(false);
                         setSec(0);
                         sound.play();
+                        setColor(coulor);
                     } else if (timeMin === 0 && !inSess) {
                         setMin(session);
                         setInse(true);
                         setSec(0);
                         sound.play();
+                        setColor(coulor)
                     } else {
+                        if (timeMin===1) {
+                            setColor("red");
+                        } else {
+                            setColor(coulor)
+                        };
                         setMin(timeMin - 1);
                         setSec(59);
                     }
@@ -57,13 +70,13 @@ const Timer = () => {
 
             return () => clearTimeout(timeout);
         }
-    }, [timeSec, timeMin, play, brek, session, inSess]);
+    }, [timeSec, timeMin, play, brek, session, inSess, Color]);
 
 
     const handleBreak = (action) => {
-        console.log(action, "brek", brek);
         if (action === "increment") {
             if (brek < 60) {
+                setColor(coulor);
                 let newMad = brek + 1;
                 setBrek(newMad);
                 if (!inSess) {
@@ -73,6 +86,7 @@ const Timer = () => {
             }
         } else {
             if (brek > 1) {
+                setColor(coulor);
                 let newMad = brek - 1;
                 setBrek(newMad);
                 if (!inSess) {
@@ -85,6 +99,7 @@ const Timer = () => {
     const handleSession = (action) => {
         if (action === "increment") {
             if (session < 60) {
+                setColor(coulor);
                 let newMad = session + 1;
                 setSession(newMad);
                 if (inSess) {
@@ -94,6 +109,7 @@ const Timer = () => {
             }
         } else {
             if (session > 1) {
+                setColor(coulor);
                 let newMad = session - 1;
                 setSession(newMad);
                 if (inSess) {
@@ -124,7 +140,7 @@ const Timer = () => {
                     </div>
                 </div>
             </div>
-            <div className="dynamic">
+            <div className="dynamic" style={{color: Color}}>
                 {inSess && <div id="timer-label">Session</div>}
                 {!inSess && <div id="timer-label">Break</div>}
                 <div id="time-left">{timeMin > 9 ? timeMin : "0" + timeMin}:{timeSec < 10 ? "0" + timeSec : timeSec}</div>
