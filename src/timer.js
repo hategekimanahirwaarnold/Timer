@@ -76,20 +76,20 @@ const Timer = () => {
     const handleBreak = (action) => {
         if (action === "increment") {
             if (brek < 60) {
-                setColor(coulor);
                 let newMad = brek + 1;
                 setBrek(newMad);
                 if (!inSess) {
+                    setColor(coulor);
                     setMin(newMad);
                     setSec(0);
                 };
             }
         } else {
             if (brek > 1) {
-                setColor(coulor);
                 let newMad = brek - 1;
                 setBrek(newMad);
                 if (!inSess) {
+                    setColor(coulor);
                     setMin(newMad);
                     setSec(0);
                 };
@@ -99,20 +99,20 @@ const Timer = () => {
     const handleSession = (action) => {
         if (action === "increment") {
             if (session < 60) {
-                setColor(coulor);
                 let newMad = session + 1;
                 setSession(newMad);
                 if (inSess) {
+                    setColor(coulor);
                     setMin(newMad);
                     setSec(0);
                 }
             }
         } else {
             if (session > 1) {
-                setColor(coulor);
                 let newMad = session - 1;
                 setSession(newMad);
                 if (inSess) {
+                    setColor(coulor);
                     setMin(newMad);
                     setSec(0);
                 }
