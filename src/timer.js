@@ -11,7 +11,7 @@ const Timer = () => {
     const [Color, setColor] = useState(coulor);
 
     const handleRefresh = () => {
-        console.log("refresh is called");
+        setColor(coulor);
         setPlay(false);
         setInse(true);
         setSession(25);
