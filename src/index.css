@@ -40,7 +40,7 @@ h2 {
 }
 .break-session {
   background-color: black;
-  border-radius: 40%;
+  border-radius: 35%;
   height: fit-content;
   width: 96%;
   display: flex;
@@ -49,7 +49,7 @@ h2 {
 }
 .break, .session {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
   margin: 20px;
