@@ -38,11 +38,6 @@ const Timer = () => {
                         sound.pause();
                         sound.currentTime = 0;
                     };
-                    if (timeMin === 0) {
-                        setColor("red")
-                    } else {
-                        setColor(coulor)
-                    }
                 } else {
                     if (timeMin === 0 && inSess) {
                         setMin(brek);
@@ -69,6 +64,8 @@ const Timer = () => {
             }, 1000);
 
             return () => clearTimeout(timeout);
+        } else {
+          sound.pause();
         }
     }, [timeSec, timeMin, play, brek, session, inSess, Color]);
 
