@@ -86,3 +86,7 @@ h2 {
 #session-label {
   text-align: center;
 }
+#break-length, #session-length {
+  text-align: center;
+  width: 15px;
+}
